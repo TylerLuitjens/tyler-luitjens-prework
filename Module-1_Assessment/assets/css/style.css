@@ -2,12 +2,26 @@
 {
     width: 20%;
     height: auto;
-    margin-left: 10px;
+    margin-left: 20px;
     margin-right: 20px;
 }
+
+p{
+    margin-left: 20px;
+    margin-right: 20px;;
+}
+
 img{
     float: left;
+    width: 400px;
+    margin: 2%;
 }
+
+.image{
+    float: left;
+    margin: 2%;
+}
+
 body{
     background-image: url('../images/herringbone-background.png');
     color: #777777;
@@ -20,6 +34,7 @@ body{
     background: #ffffff;
     border: solid #dddddd;
     width: 960px;
+    margin-left: 25%;
 }
 
 h1, h2, h3, h4, h5{
@@ -30,16 +45,15 @@ h1, h2, h3, h4, h5{
 .header{
     border-bottom: 3px solid #cccccc;
     border-radius: 5px;
+    padding: 20px;
+    /* padding-bottom: 20px; */
 }
 
 .footer{
     background: #666666;
     color: white;
     border-top: solid 6px #4aaaa5;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    position: fixed;
     font-size: 12px;
     padding-top: 25px;
 }
@@ -47,6 +61,7 @@ h1, h2, h3, h4, h5{
 .logo{
     background: #4aaaa5;
     margin-bottom: 0px;
+    margin-left: 25%;
     padding: 10px;
     color:white;
     font-weight: 500;
@@ -59,6 +74,19 @@ h1, h2, h3, h4, h5{
     padding: 0;
 }
 
+.portfolio{
+    height: 100%;
+    overflow-y: hidden;
+    margin-bottom: 15%;
+}
+
+.button{
+    background-color: #4aaaa5;
+    color: #ffffff;
+    margin-bottom: 20px;
+    padding: 5px;
+}
+
 a{
     color: #777777;
     margin-right: 15px;
@@ -66,4 +94,43 @@ a{
 
 .links{
     margin-right: 25%;
+}
+
+textarea{
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+input{
+    margin-bottom: 25px;
+}
+
+
+@media (max-width: 1920px){
+    .content{
+        width:50%
+    }
+}
+
+@media (max-width: 800px){ /* FIXME this isn't working the way I would like*/
+    img{
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+@media (max-width: 576px){
+    .content{
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .logo{
+        margin-left: 0px;
+    }
+
+    .links{
+        margin-right: 0px;
+    }
+    
 }
