@@ -1,0 +1,26 @@
+*{
+    
+}
+
+body{
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 100;
+    background-image: url('../images/blue-and-white-milky-way.jpg'); /*TODO shrink this image so it doesn't take so long to load*/
+}
+
+h1, h2, h3{
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    margin: 10px;;
+    color: white;
+}
+
+p{
+    font-size: 24px;
+}
+
+.content{
+    color: white;
+    background: black;
+    border: white solid 2px;
+}
