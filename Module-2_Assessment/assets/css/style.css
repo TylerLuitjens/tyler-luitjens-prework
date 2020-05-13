@@ -11,6 +11,10 @@ h1, h2, h3{
     color: white;
 }
 
+h3{
+    margin-bottom: 50px;
+}
+
 p{
     font-size: 24px;
 }
@@ -19,4 +23,29 @@ p{
     color: white;
     background: black;
     border: white solid 2px;
+}
+
+#hud-fuel-warning{
+    display: none;
+    border: red dashed 2px;
+    color: red;
+    float: left;
+}
+
+#hud-game-over{
+    display: none;
+    border: red dashed 2px;
+    color: red;
+    float: left;
+}
+
+#hud-win{
+    display: none;
+    border: green dashed 2px;
+    color: green;
+    float: left;
+}
+
+#hidden-word{
+    margin: 0px;
 }

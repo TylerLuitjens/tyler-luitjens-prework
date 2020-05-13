@@ -8,17 +8,31 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Hangman</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;800&&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./assets/css/fonts/space age.ttf">
-  <link rel="stylesheet" href="./assets/fonts/airstrike/airstrikehalf.ttf">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body>
-
+<body onkeyup="checkInput(event.key)">
   <div class="text-center col-md-4 offset-4">
     <h1>Hangman</h1>
     <h3>-in outer space-</h3>
+  </div>
+
+  <div id="hud-fuel-warning" class="col-md-2 text-center">
+    <p>Be careful Space Cadet.</p>
+    <p>Try not to waste any more fuel on letters we've already guessed!</p>
+  </div>
+
+  <div id="hud-game-over" class="col-md-2 text-center">
+    <p>System Malfunction.</p>
+    <p>It looks like we have run out of fuel!</p>
+    <p>I have reset the system so you can try again</p>
+  </div>
+
+  <div id="hud-win" class="col-md-2 text-center">
+    <p>Good work Space Cadet.</p>
+    <p>Looks like you were able to solve the puzzle!</p>
+    <p>I have reset the system so you can keep going</p>
   </div>
 
   <div class="content col-md-4 offset-4">
@@ -30,7 +44,7 @@
     <p>Current Word:</p>
     <h3 id="hidden-word"></h3>
 
-    <p>Number of Guesses Remaining:</p>
+    <p>Fuel Remaining:</p>
     <p id="lives"></p>
 
     <p>Guessed Letters:</p>
