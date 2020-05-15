@@ -82,13 +82,17 @@ function checkInput(guess) {
 }
 
 function playMusic() {
+  var sound;
   if(game.lives === 0) {
     // TODO play losing music
+    sound = sound = document.getElementById('loss-sound');
   }
   else {
     // TODO play winning music
+    sound = document.getElementById('win-sound');
     game.wins ++;
     // document.getElementById('wins').innerText = wins;
   }
+  sound.play();
   game.initializeGame();
 }
