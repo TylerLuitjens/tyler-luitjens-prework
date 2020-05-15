@@ -1,90 +1,94 @@
-var lives      = 10;
-var wins       = 0;
-var word       = '';
-var guesses    = [];
-var hiddenWord = [];
-var finished = false;
-// TODO need to make a way to reset the game
-// TODO need to add in the music
-initializeGame();
+var game = {
+  lives      : 10,
+  wins       : 0,
+  word       : '',
+  guesses    : [],
+  hiddenWord : [],
+  finished   : false,
 
-function generateWord() {
-  var words = ['alien', 'star', 'planet', 'constellation', 'galaxy', 'asteroid', 'nebula'];
-  var index = Math.floor(Math.random() * 6);
+  generateWord : function() {
+    var words = ['alien', 'star', 'planet', 'constellation', 'galaxy', 'asteroid', 'nebula'];
+    var index = Math.floor(Math.random() * 6);
 
-  word = words[index];
-}
+    this.word = words[index];
+  },
 
-function initializeGame() {
-  generateWord();
-  lives   = 10;
-  guesses = [];
-  finished = false;
-  hiddenWord = [];
-  for (var i = 0; i < word.length; i++) {
-    hiddenWord.push('-');
-  }
+  initializeGame : function(){
+    this.generateWord();
+    this.lives      = 10;
+    this.guesses    = [];
+    this.finished   = false;
+    this.hiddenWord = [];
 
-  document.getElementById('hidden-word').innerText = hiddenWord.join(' ');
-  document.getElementById('lives').innerText = lives;
-  document.getElementById('guesses').innerText = '';
-  document.getElementById('wins').innerText = wins;
-
-}
-
-function checkInput(guess) {
-  guess = guess.toLowerCase();
-
-  if(guesses.includes(guess)) {
-    document.getElementById('fuel-warning').style.display = 'block';
-  }
-  else if (word.indexOf(guess) === -1 && lives !== 0) {
-    guesses.push(guess);
-    lives --;
-    document.getElementById('lives').innerText = lives;
-    document.getElementById('guesses').innerText = guesses.join(', ');
-    document.getElementById('hud-win').style.display = 'none';
-    document.getElementById('hud-game-over').style.display = 'none';
-    document.getElementById('hud-fuel-warning').style.display = 'none';
-    
-    if (lives === 0) {
-      //They have run out of lives, the player has lost...
-      document.getElementById('hud-game-over').style.display = 'block';
-      finished = true;
-      playMusic();
+    for (var i = 0; i < this.word.length; i++) {
+      this.hiddenWord.push('-');
     }
-  }
-  else {
-    document.getElementById('hud-fuel-warning').style.display = 'none';
-    document.getElementById('hud-win').style.display = 'none';
-    document.getElementById('hud-game-over').style.display = 'none';
-    //need to make sure we replace all instances of the letter
-    for (var i = 0; i < word.length; i++) {
-      if (word.charAt(i) == guess) {
-        hiddenWord[i] = guess;
+  
+    document.getElementById('hidden-word').innerText = this.hiddenWord.join(' ');
+    document.getElementById('lives').innerText = this.lives;
+    document.getElementById('guesses').innerText = '';
+    document.getElementById('wins').innerText = this.wins;
+  },
+
+  checkGuess : function(guess){
+    if(this.guesses.includes(guess)) {
+      document.getElementById('hud-fuel-warning').style.display = 'block';
+    }
+    else if (this.word.indexOf(guess) === -1 && this.lives !== 0) {
+      this.guesses.push(guess);
+      this.lives --;
+      document.getElementById('lives').innerText = this.lives;
+      document.getElementById('guesses').innerText = this.guesses.join(', ');
+      document.getElementById('hud-win').style.display = 'none';
+      document.getElementById('hud-game-over').style.display = 'none';
+      document.getElementById('hud-fuel-warning').style.display = 'none';
+      
+      if (this.lives === 0) {
+        //They have run out of lives, the player has lost...
+        document.getElementById('hud-game-over').style.display = 'block';
+        this.finished = true;
+        playMusic();
       }
     }
-
-    //redisplay the hidden word
-    document.getElementById('hidden-word').innerText = hiddenWord.join('');
-
-    if(!hiddenWord.includes('-')) {
-      //there are no more hidden letters, the player has won!
-      finished = true;
-      document.getElementById('hud-win').style.display = 'block';
-      playMusic();
+    else {
+      document.getElementById('hud-fuel-warning').style.display = 'none';
+      document.getElementById('hud-win').style.display = 'none';
+      document.getElementById('hud-game-over').style.display = 'none';
+      //need to make sure we replace all instances of the letter
+      for (var i = 0; i < this.word.length; i++) {
+        if (this.word.charAt(i) == guess) {
+          this.hiddenWord[i] = guess;
+        }
+      }
+  
+      //redisplay the hidden word
+      document.getElementById('hidden-word').innerText = this.hiddenWord.join('');
+  
+      if(!this.hiddenWord.includes('-')) {
+        //there are no more hidden letters, the player has won!
+        this.finished = true;
+        document.getElementById('hud-win').style.display = 'block';
+        playMusic();
+      }
     }
   }
+
+};
+
+game.initializeGame();
+
+function checkInput(guess) {
+  game.checkGuess(guess.toLowerCase());
 }
 
 function playMusic() {
-  if(lives === 0) {
+  if(game.lives === 0) {
     // TODO play losing music
   }
   else {
     // TODO play winning music
-    wins ++;
+    game.wins ++;
     // document.getElementById('wins').innerText = wins;
   }
-  initializeGame();
+  game.initializeGame();
 }
